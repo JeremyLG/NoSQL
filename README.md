@@ -24,6 +24,8 @@ pip3 install pymongo
 
 pip3 install xlrd
 
+pip3 install pprint (je ne sais plus s'il y est par défaut dans python 3.5 ou si je l'ai pip3 dans le doute...)
+
 ## Base de données
 
 J'ai utilisé la base de données mongodb 3.4
