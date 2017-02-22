@@ -53,7 +53,7 @@ activitiesMG = db.activitiesMG
 activitiesMG.insert_many(activities.to_dict('records'))
 pprint(list(activitiesMG.find()))
 pipeline =[
-{'$match':{'SITE_BOROU':'Staten Island'}},
+    {'$match':{'SITE_BOROU':'Staten Island'}},
     {"$project":{
     '_id':0,
     'zip':'$SITE_ZIP',
@@ -62,4 +62,20 @@ pipeline =[
     'sum' : {'$sum' : [ '$ACADEMICS', '$SPORTS_PHY','$SUMMER','$WEEKENDS','$ARTS_CULTU',
     '$ELEMENTARY','$EVENINGS','$HIGH_SCHOO','$MIDDLE_SCH','$SCHOOL_YEA', ]}}},
     {'$sort':{'sum':-1}}]
+pprint(list(activitiesMG.aggregate(pipeline)))
+
+
+
+
+
+#### MEILLEUR ENDROIT POUR VIVRE : LE PPRINT FINAL
+
+pipeline =[
+    {'$match':{'SITE_BOROU':'Staten Island','SITE_ZIP':10306,'SITE_STREE':'Midland Avenue'}},
+    {"$project":{
+    '_id':0,
+    'zip':'$SITE_ZIP',
+    'borough':'$SITE_BOROU',
+    'street':'$SITE_STREE'}}]
+
 pprint(list(activitiesMG.aggregate(pipeline)))
